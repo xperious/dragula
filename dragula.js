@@ -39,6 +39,7 @@ function dragula (initialContainers, options) {
   if (o.direction === void 0) { o.direction = 'vertical'; }
   if (o.ignoreInputTextSelection === void 0) { o.ignoreInputTextSelection = true; }
   if (o.mirrorContainer === void 0) { o.mirrorContainer = doc.body; }
+  if (o.insertOnDrop === void 0) { o.insertOnDrop = true; }
 
   var drake = emitter({
     containers: o.containers,
@@ -401,7 +402,9 @@ function dragula (initialContainers, options) {
       reference !== nextEl(item)
     ) {
       _currentSibling = reference;
-      dropTarget.insertBefore(item, reference);
+      if (o.insertOnDrop) {
+        dropTarget.insertBefore(item, reference);
+      }
       drake.emit('shadow', item, dropTarget, _source);
     }
     function moved (type) { drake.emit(type, item, _lastDropTarget, _source); }
