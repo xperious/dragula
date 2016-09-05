@@ -376,6 +376,7 @@ function dragula (initialContainers, options) {
       _lastDropTarget = dropTarget;
       over();
     }
+    drake.emit('moves', item, _lastDropTarget, _source, {x: x, y: y});
     var parent = getParent(item);
     if (dropTarget === _source && _copy && !o.copySortSource) {
       if (parent) {
